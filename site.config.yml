@@ -6,9 +6,9 @@ framework:
     name: "@rathnasgala/theme"
     version: 2.0.19
 site:
-  id: unavailable
-  ownerId: unavailable
-  repository: unavailable
+  id: 01M18JW428F7P4E6A8125B9J96
+  ownerId: 01KZWXXZV4JMYCZ961SJ05F6HH
+  repository: rathnastest/field-notes4
   # Set the publication title and public author profile here. Until then the repository owner is shown.
   name: "rathnastest"
   author: unavailable
@@ -26,8 +26,8 @@ site:
 hosting:
   provider: github-pages
   topology: provider-default
-  canonicalBaseUrl: unavailable
-  pathPrefix: /unavailable
+  canonicalBaseUrl: https://rathnastest.github.io
+  pathPrefix: /field-notes4
   canonicalPolicy: self
 design:
   theme: editorial
