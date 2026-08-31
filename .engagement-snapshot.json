@@ -1,5 +1,18 @@
 {
   "schemaVersion": 1,
-  "refreshedAt": null,
-  "articles": {}
+  "refreshedAt": "2026-08-31T18:01:33.708504006Z",
+  "articles": {
+    "01M18Q8DVHMFE58EA7GT4S0F7X": {
+      "reactions": 0,
+      "comments": 3,
+      "views": 1,
+      "activeReadingSeconds": 0
+    },
+    "01M18JWSE0BZMJ0Q9REH3BD7E6": {
+      "reactions": 0,
+      "comments": 0,
+      "views": 3,
+      "activeReadingSeconds": 0
+    }
+  }
 }
