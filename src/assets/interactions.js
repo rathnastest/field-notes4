@@ -309,6 +309,62 @@ function recordView(region) {
   }).catch(() => {});
 }
 
+const ACTIVE_READING_HEARTBEAT_MS = 15_000;
+
+/*
+ * Active reading time is deliberately an article/day aggregate, not a session trail. A tab earns
+ * time only while it is visible and owns browser focus. Every observation is capped at one
+ * heartbeat so a suspended browser cannot turn an overnight pause into reading time.
+ */
+function recordActiveReadingTime(region) {
+  const requestUrl = new URL(region.dataset.engagementUrl);
+  requestUrl.pathname = requestUrl.pathname.replace(/\/engagement$/, '/reading-time');
+  let accruedMilliseconds = 0;
+  let lastObservedAt = performance.now();
+  let wasActive = document.visibilityState === 'visible' && document.hasFocus();
+  let stopped = false;
+
+  const observe = () => {
+    const now = performance.now();
+    if (wasActive) {
+      accruedMilliseconds += Math.min(
+        Math.max(0, now - lastObservedAt),
+        ACTIVE_READING_HEARTBEAT_MS
+      );
+    }
+    lastObservedAt = now;
+    wasActive = document.visibilityState === 'visible' && document.hasFocus();
+  };
+
+  const flush = () => {
+    if (stopped) return;
+    observe();
+    const activeSeconds = Math.floor(accruedMilliseconds / 1_000);
+    if (activeSeconds < 1) return;
+    accruedMilliseconds -= activeSeconds * 1_000;
+    fetch(requestUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ activeSeconds }),
+      credentials: 'omit',
+      keepalive: true
+    }).catch(() => {});
+  };
+
+  const interval = setInterval(flush, ACTIVE_READING_HEARTBEAT_MS);
+  document.addEventListener('visibilitychange', flush);
+  window.addEventListener('focus', observe);
+  window.addEventListener('blur', flush);
+  window.addEventListener('pagehide', () => {
+    flush();
+    stopped = true;
+    clearInterval(interval);
+    document.removeEventListener('visibilitychange', flush);
+    window.removeEventListener('focus', observe);
+    window.removeEventListener('blur', flush);
+  }, { once: true });
+}
+
 /*
  * The comments island asks for a sign-in when the reader reaches for something that needs one.
  * Opening the window and replaying the interrupted intent stays here, because that is a property
@@ -336,11 +392,65 @@ const sessionFrame = document.querySelector('[data-gala-session-frame]');
 const sessionOrigin = sessionFrame ? new URL(sessionFrame.src).origin : null;
 const sessionSiteId = sessionFrame ? new URL(sessionFrame.src).searchParams.get('siteId') ?? '' : '';
 const resumeStorageKey = `gala.reader.resume.${sessionSiteId}`;
+const intentStorageKey = `gala.reader.intent.${sessionSiteId}`;
 let sessionFrameReady = false;
 let pendingSessionTransferCode = null;
 let sessionFrameToken = null;
 let fedCmController = null;
 const FEDCM_GRANT_COOKIE = 'gala-fedcm-grant=1';
+
+function rememberPendingIntent(intent) {
+  try {
+    if (!intent) {
+      sessionStorage.removeItem(intentStorageKey);
+      return;
+    }
+    sessionStorage.setItem(intentStorageKey, JSON.stringify({
+      kind: intent.kind,
+      selector: intent.selector ?? null,
+      articleId: intent.region?.dataset.articleId ?? null,
+      draft: intent.draft ?? null,
+      caret: intent.caret ?? null,
+      returnHash: location.hash && !location.hash.startsWith('#gala-session-transfer=')
+        ? location.hash : ''
+    }));
+  } catch {}
+}
+
+function restorePendingIntent() {
+  try {
+    const stored = JSON.parse(sessionStorage.getItem(intentStorageKey) || 'null');
+    if (!stored || typeof stored.kind !== 'string') return null;
+    const region = stored.articleId
+      ? [...document.querySelectorAll('[data-article-id]')]
+        .find((candidate) => candidate.dataset.articleId === stored.articleId)
+      : document.querySelector('[data-engagement-url]');
+    return { ...stored, region };
+  } catch {
+    return null;
+  }
+}
+
+function acceptRedirectedSessionTransfer() {
+  if (typeof location === 'undefined'
+      || !location.hash.startsWith('#gala-session-transfer=')) return;
+  const code = location.hash.slice('#gala-session-transfer='.length);
+  if (!/^[A-Za-z0-9_-]{43}$/.test(code)) return;
+  pendingSessionTransferCode = code;
+  pendingIntent = restorePendingIntent();
+  history.replaceState(null, '', `${location.pathname}${location.search}${pendingIntent?.returnHash || ''}`);
+}
+
+function redirectSignIn() {
+  if (!sessionFrameToken || !sessionSiteId) return false;
+  if (!pendingIntent) rememberPendingIntent({ kind: 'account' });
+  const url = new URL('/v1/fedcm/login', sessionOrigin);
+  url.searchParams.set('client_id', sessionSiteId);
+  url.searchParams.set('frame_token', sessionFrameToken);
+  url.searchParams.set('return_url', `${location.origin}${location.pathname}${location.search}`);
+  location.assign(url);
+  return true;
+}
 
 function hasFedCmGrant() {
   try {
@@ -396,8 +506,9 @@ async function fedCmSession(mode) {
   const status = document.querySelector('[data-engagement-status]');
   if (!sessionFrameToken) return false;
   if (!globalThis.IdentityCredential || typeof navigator.credentials?.get !== 'function') {
-    if (status) status.textContent = 'FedCM is not available in this browser. Use a current browser to sign in.';
-    return false;
+    if (mode === 'passive') return false;
+    if (status) status.textContent = 'Taking you to secure sign-in…';
+    return redirectSignIn();
   }
   if (fedCmController) {
     if (mode === 'passive') return false;
@@ -425,6 +536,7 @@ async function fedCmSession(mode) {
     deliverSessionTransfer();
     return true;
   } catch (error) {
+    if (mode === 'active' && error?.name === 'NotSupportedError') return redirectSignIn();
     if (mode === 'active' && error?.name !== 'NotAllowedError' && error?.name !== 'AbortError') {
       console.error('Gala FedCM sign-in failed.', error);
     }
@@ -445,9 +557,13 @@ function requestSession(intent) {
     draft: field ? field.value : null,
     caret: field ? field.selectionStart : null
   };
+  rememberPendingIntent(pendingIntent);
   if (field) field.blur();
   fedCmSession('active').then((started) => {
-    if (!started) pendingIntent = null;
+    if (!started) {
+      pendingIntent = null;
+      rememberPendingIntent(null);
+    }
   });
 }
 
@@ -460,9 +576,16 @@ function resumeIntent() {
   if (!document.hasFocus()) return;
   // Re-found rather than remembered: signing in re-renders the engagement region, so a node
   // captured before the interruption may no longer be the one on the page.
-  const element = intent.region?.querySelector(intent.selector);
-  if (!element) return;
+  const element = intent.selector ? intent.region?.querySelector(intent.selector) : null;
+  if (!element) {
+    if (intent.kind === 'account' || (intent.kind === 'comment' && !intent.selector)) {
+      pendingIntent = null;
+      rememberPendingIntent(null);
+    }
+    return;
+  }
   pendingIntent = null;
+  rememberPendingIntent(null);
   if (intent.kind === 'comment') {
     if (intent.draft != null && element.value === '') element.value = intent.draft;
     element.focus();
@@ -476,9 +599,12 @@ function resumeIntent() {
   element.click();
 }
 
+acceptRedirectedSessionTransfer();
+
 document.querySelectorAll('[data-engagement-url]').forEach((region) => {
   refreshEngagement(region);
   recordView(region);
+  recordActiveReadingTime(region);
 });
 
 function engagementErrorMessage(code) {
