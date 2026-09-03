@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://rathnastest.github.io/field-notes4/feed/en.xml</id>
+  <title>rathnastest - en</title>
+  <author><name>rathnastest</name></author>
+  <updated>2026-09-03T15:01:43.352Z</updated>
+  <link rel="self" href="https://rathnastest.github.io/field-notes4/feed/en.xml"/>
+  <entry>
+    <id>urn:gala:article:01M18Q8DVHMFE58EA7GT4S0F7X:en</id>
+    <title>Your first post</title>
+    <updated>2026-08-22T00:00:00.000Z</updated>
+    <link href="https://rathnastest.github.io/field-notes4/en/your-first-post/"/>
+    <content type="html">&lt;p&gt;&lt;img src=&quot;media/gala67-small-business-blogging-hero.png&quot; alt=&quot;A small-business owner making pottery while an organized digital publishing workflow runs beside her&quot; title=&quot;More time for the work only you can do&quot; /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;your-blog-should-work-for-your-business-not-become-another-job&quot;&gt;Your blog should work for your business-not become another job&lt;/h1&gt;
+&lt;p&gt;You know the feeling: the shop is finally quiet, the last customer email is answered, and &lt;em&gt;now&lt;/em&gt; you are supposed to become a content strategist.&lt;/p&gt;
+&lt;p&gt;You open a blank page. You think about keywords, headlines, images, links, metadata, and publishing. Forty-five minutes later, you are still adjusting the title while the work that actually pays the bills waits nearby.&lt;/p&gt;
+&lt;p&gt;For a small-business owner, the problem is rarely a lack of expertise. You answer useful questions all day. You know what customers worry about before buying. You have stories, lessons, and hard-won advice worth sharing.&lt;/p&gt;
+&lt;p&gt;The problem is turning that knowledge into a consistent, professional blog without surrendering your evenings to it.&lt;/p&gt;
+&lt;p&gt;That is why &lt;a href=&quot;https://gala67.com/&quot;&gt;Gala67&lt;/a&gt;-or simply Gala-is so compelling. Gala gives your writing a calm, durable publishing home: Markdown files in your own repository, published as a fast static site with the technical SEO foundations handled for you. Pair that workflow with an AI writing assistant for research and first drafts, and blogging stops feeling like a second business.&lt;/p&gt;
+&lt;p&gt;It becomes a repeatable part of the business you already run.&lt;/p&gt;
+&lt;h2 id=&quot;what-gala-actually-does-and-why-the-distinction-matters&quot;&gt;What Gala actually does-and why the distinction matters&lt;/h2&gt;
+&lt;p&gt;Let’s be precise: &lt;strong&gt;Gala is the publishing system, not the AI that writes your article.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An AI assistant can help you turn a voice note, customer question, or rough outline into a draft. Gala gives that draft a reliable path to the web. Its browser workspace and command-line tools support creating, previewing, publishing, and managing a publication, while the finished words remain in your repository.&lt;/p&gt;
+&lt;p&gt;That separation is a strength.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your business knowledge supplies the truth, experience, and point of view.&lt;/li&gt;
+&lt;li&gt;An AI assistant helps organize and accelerate the draft.&lt;/li&gt;
+&lt;li&gt;Gala turns the reviewed Markdown into an owned, polished publication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You remain the editor. The technology removes friction; it does not replace your judgment.&lt;/p&gt;
+&lt;h2 id=&quot;the-invisible-seo-work-you-no-longer-have-to-rebuild&quot;&gt;The invisible SEO work you no longer have to rebuild&lt;/h2&gt;
+&lt;p&gt;SEO is not one clever keyword repeated ten times. It starts with publishing genuinely helpful answers on pages that search engines can discover and understand.&lt;/p&gt;
+&lt;p&gt;Gala’s managed site template handles much of that technical groundwork. A published post can include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a clear page title and meta description;&lt;/li&gt;
+&lt;li&gt;canonical URLs to identify the preferred version of a page;&lt;/li&gt;
+&lt;li&gt;Open Graph and social-sharing image metadata;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BlogPosting&lt;/code&gt; structured data for the article, author, publisher, dates, and image;&lt;/li&gt;
+&lt;li&gt;sitemap and feed output that helps readers and crawlers discover posts;&lt;/li&gt;
+&lt;li&gt;language-aware URLs and alternate-language metadata;&lt;/li&gt;
+&lt;li&gt;a custom domain when you want the publication to live under your own brand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those details do not guarantee a first-page ranking-no honest platform can promise that. They remove common technical gaps and give every useful article a sound starting point. Google explains that structured data can help it understand a page and present richer search features, but it also explicitly says those appearances are not guaranteed. That is the right expectation: solid infrastructure creates eligibility; valuable content earns attention.&lt;/p&gt;
+&lt;p&gt;For a business owner, this is liberating. Instead of remembering which tag belongs where, you can spend that attention on the question your customer typed into search.&lt;/p&gt;
+&lt;h2 id=&quot;from-one-customer-question-to-a-useful-article&quot;&gt;From one customer question to a useful article&lt;/h2&gt;
+&lt;p&gt;Imagine you own a neighborhood bakery. Three customers ask whether a sourdough starter can survive a week in the refrigerator.&lt;/p&gt;
+&lt;p&gt;That is not an interruption. It is a content brief.&lt;/p&gt;
+&lt;p&gt;Your efficient workflow could look like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Capture the real question.&lt;/strong&gt; Write down the customer’s exact phrasing while it is fresh.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add what only you know.&lt;/strong&gt; Include what you have observed in your kitchen, the mistakes beginners make, and the signs that a starter is healthy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use AI for structure.&lt;/strong&gt; Ask for an outline or first draft based only on the facts you provide. Require it to flag anything that needs verification.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Edit like the owner.&lt;/strong&gt; Remove generic filler. Add your examples, your voice, and the next step a reader can actually take.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Publish with Gala.&lt;/strong&gt; Add a descriptive title, summary, tags, and original image; preview the page; then publish.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reuse the answer.&lt;/strong&gt; Share the article in your next customer email, link it from a relevant service page, and send it whenever the question returns.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The result is more than “content.” It is a helpful business asset that can answer the same question after closing time.&lt;/p&gt;
+&lt;h2 id=&quot;consistency-becomes-realistic-when-the-process-gets-smaller&quot;&gt;Consistency becomes realistic when the process gets smaller&lt;/h2&gt;
+&lt;p&gt;Most small businesses do not need to publish every day. They need a pace they can sustain without compromising the work customers came for.&lt;/p&gt;
+&lt;p&gt;Try one strong article every two weeks. Start with questions already appearing in your inbox, consultations, reviews, and sales conversations. Each post should do one job well:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;explain a confusing choice;&lt;/li&gt;
+&lt;li&gt;compare two approaches honestly;&lt;/li&gt;
+&lt;li&gt;prepare a customer for an appointment;&lt;/li&gt;
+&lt;li&gt;show how your process works;&lt;/li&gt;
+&lt;li&gt;answer a local or seasonal question;&lt;/li&gt;
+&lt;li&gt;help someone avoid an expensive mistake.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This approach is good for readers and aligned with Google’s guidance on &lt;a href=&quot;https://developers.google.com/search/docs/fundamentals/creating-helpful-content&quot;&gt;helpful, reliable, people-first content&lt;/a&gt;. Your firsthand experience is the advantage. AI can make the page arrive sooner; it cannot manufacture the years you spent learning your trade.&lt;/p&gt;
+&lt;h2 id=&quot;the-real-time-savings-are-bigger-than-writing-faster&quot;&gt;The real time savings are bigger than writing faster&lt;/h2&gt;
+&lt;p&gt;The obvious win is a faster first draft. The deeper win is reducing the number of decisions surrounding every post.&lt;/p&gt;
+&lt;p&gt;With a repeatable Gala workflow, you are not choosing a new layout, reconstructing metadata, or wondering where the final file lives each time. The article is Markdown. Its media sits beside it. The repository keeps a durable history. The managed publishing layer turns it into a consistent reader experience.&lt;/p&gt;
+&lt;p&gt;That regained time can go back into the parts of your business where your presence matters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;talking to customers;&lt;/li&gt;
+&lt;li&gt;improving your product or service;&lt;/li&gt;
+&lt;li&gt;training your team;&lt;/li&gt;
+&lt;li&gt;strengthening supplier relationships;&lt;/li&gt;
+&lt;li&gt;resting enough to make better decisions tomorrow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Efficiency is not about producing the maximum number of posts. It is about publishing useful work without draining the person behind the business.&lt;/p&gt;
+&lt;h2 id=&quot;a-simple-quality-check-before-you-publish&quot;&gt;A simple quality check before you publish&lt;/h2&gt;
+&lt;p&gt;AI-assisted content still needs a responsible owner. Before any article goes live, ask:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is every factual claim accurate and current?&lt;/li&gt;
+&lt;li&gt;Does this sound like us, or like any business on the internet?&lt;/li&gt;
+&lt;li&gt;Did we add firsthand experience that a generic summary cannot provide?&lt;/li&gt;
+&lt;li&gt;Does the title match the question the article actually answers?&lt;/li&gt;
+&lt;li&gt;Is the next step clear without turning the whole article into a sales pitch?&lt;/li&gt;
+&lt;li&gt;Would I be comfortable sending this to a good customer by name?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the answer to the last question is yes, you are close.&lt;/p&gt;
+&lt;h2 id=&quot;your-first-post-is-probably-already-in-your-inbox&quot;&gt;Your first post is probably already in your inbox&lt;/h2&gt;
+&lt;p&gt;You do not need a 12-month content calendar to begin. Find one question a customer asked this week. Write five honest bullet points from your experience. Use an AI assistant to shape them, verify the result, and publish the finished article through Gala.&lt;/p&gt;
+&lt;p&gt;Then return to your customers, your craft, and the reason you started the business in the first place.&lt;/p&gt;
+&lt;p&gt;That is what makes Gala67 cool: not that it turns you into a full-time blogger, but that it helps you build a credible, discoverable body of work &lt;strong&gt;without asking you to become one&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Your expertise deserves to be found. Your time still belongs to you.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Explore &lt;a href=&quot;https://gala67.com/&quot;&gt;Gala67&lt;/a&gt; and see how repository-owned publishing can fit the way you work.&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>urn:gala:article:01M18JWSE0BZMJ0Q9REH3BD7E6:en</id>
+    <title>Example post</title>
+    <updated>2026-08-10T00:00:00.000Z</updated>
+    <link href="https://rathnastest.github.io/field-notes4/en/example/"/>
+    <content type="html">&lt;p&gt;Replace this example with your first post.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
